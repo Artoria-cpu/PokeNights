@@ -1,0 +1,11 @@
+Central Park is the first battle map.
+- Scene: Assets/Scenes/CentralPark.unity. Build index 0; CaptureCollection returns here from PokemonShop.
+- Original map backup: Assets/_Recovery/CentralPark_BeforeCombat_20260922.unity. Original CharacterSwitchPlayground remains available as a reference.
+- Central Park Gameplay contains the three playable characters, twelve Pokemon enemies, cameras, combat directors, weapon pickups, UI and parry templates.
+- Particle System (3)/(4) were copied together with all gameplay objects so BlueHalo and TealWitchPlayer retain scene references. Templates are inactive; CharacterParryAction activates their spawned copies.
+- Player Spawn - South Entrance is the initial party location; BlueHalo is controlled first. Pickups are just inside the gate; the training dummy is in Practice Clearing.
+- CentralParkEncounter runs before AI Awake, shuffles 240 prevalidated reachable positions on scene entry, keeps enemies at least 7 m apart and 20 m from the player entrance. Detection/attack caps remain 6/3.
+- Central Park Navigation collects only park terrain/prop colliders and uses agent type 0, radius 0.5, height 2, voxel 0.12. AI continues using its existing NavMesh paths plus character controller movement.
+- Underwater modifier excludes submerged ground while retaining bridge connectivity. Its upper boundary includes compensation for Recast's climb/voxel area marking.
+- Re-run CentralParkMigration.BakeAndSpawn after changing park geometry or entrance position; this saves both the NavMesh asset and validated spawn candidates. Migrate is a one-time operation.
+- Verified: 20 random layouts with complete entrance paths and spacing, both bridge landings reachable, cross-scene references absent, parry templates retained, entrance camera preview. No full Play-mode walkthrough performed.

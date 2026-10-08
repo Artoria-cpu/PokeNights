@@ -1,0 +1,9 @@
+{
+  "coinsPerPart": 40,
+  "species": [
+    {"id":1,"tier":3},{"id":4,"tier":3},{"id":7,"tier":3},
+    {"id":25,"tier":2},{"id":26,"tier":3},{"id":27,"tier":1},
+    {"id":35,"tier":2},{"id":37,"tier":2},{"id":52,"tier":1},
+    {"id":54,"tier":1},{"id":58,"tier":2},{"id":133,"tier":3}
+  ]
+}

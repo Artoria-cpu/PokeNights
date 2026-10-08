@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1394d474688848aadf77f1126dd21, type: 3}
+  m_Name: GameplayAudio
+  m_EditorClassIdentifier: Assembly-CSharp::GameplayAudioLibrary
+  swordSwings:
+  - {fileID: 8300000, guid: bbcd5125d6af00b41aaeb10154346c99, type: 3}
+  - {fileID: 8300000, guid: 56f853a3605bf4d459a827881f31e4f8, type: 3}
+  punches:
+  - {fileID: 8300000, guid: 81a47666c2f0f6e44b60f02ff4cc3a0a, type: 3}
+  - {fileID: 8300000, guid: 0d2646a8a31a7754686aade08a4248f5, type: 3}
+  - {fileID: 8300000, guid: 8a61ae6b4c924c844b5183c95ee27143, type: 3}
+  enemyHurt:
+  - {fileID: 8300000, guid: 9e3fd63e568df6c41bc57890a8a859e5, type: 3}
+  - {fileID: 8300000, guid: 67944ccfa5a0aed45af4f5ba62a24a0e, type: 3}
+  woodSteps:
+  - {fileID: 8300000, guid: df36c7007815a8547be5147761dce13b, type: 3}
+  - {fileID: 8300000, guid: cebe8b6b2a62ebd42a827007e3b68c9b, type: 3}
+  - {fileID: 8300000, guid: 89992efd88e2afe43ba35fae618dc320, type: 3}
+  - {fileID: 8300000, guid: 22f47b5de7201d84db9adb85da1e69fe, type: 3}
+  roadSteps:
+  - {fileID: 8300000, guid: fedfd5a4da300704d85a03cdae6d6c51, type: 3}
+  - {fileID: 8300000, guid: 4b718154afa6bde4787d880bf61a28ca, type: 3}
+  - {fileID: 8300000, guid: a61fce8feedb3f44c8b044eac85d8a44, type: 3}
+  - {fileID: 8300000, guid: e5b914622dd383e4f8499760a148bf03, type: 3}
+  - {fileID: 8300000, guid: 5e7c523c80067964cbae1095d75f1e15, type: 3}
+  swordHeavy: {fileID: 8300000, guid: 56f853a3605bf4d459a827881f31e4f8, type: 3}
+  air: {fileID: 8300000, guid: 45836acf52a7d4a4ca0b743c8993a7ab, type: 3}
+  magicShot: {fileID: 8300000, guid: 1293f3bb0fcd30a45bfefcd1fa5324b8, type: 3}
+  magicBurst: {fileID: 8300000, guid: 6a6a3f157e85ca04ab6f03bff200591d, type: 3}
+  magicCharge: {fileID: 8300000, guid: 8c455f40551e23742a5b0a80c958dc7c, type: 3}
+  magicBeam: {fileID: 8300000, guid: 68ad0641a6b539743b4af4a43947927d, type: 3}
+  playerHurt: {fileID: 8300000, guid: 834725355dc418d4a9bfc19ae314a449, type: 3}
+  landing: {fileID: 8300000, guid: f1d3f8c7d33dfb447bad0cbfff3b4381, type: 3}
+  masterVolume: 0.75

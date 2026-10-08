@@ -1,0 +1,3 @@
+Element icons: partywhale/pokemon-type-icons (MIT). https://github.com/partywhale/pokemon-type-icons
+Rasterized from original SVGs. License included in LICENSE.txt.
+Ball, skill and UI shape artwork created for this project.

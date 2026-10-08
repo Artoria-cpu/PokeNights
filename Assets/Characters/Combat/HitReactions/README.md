@@ -1,0 +1,32 @@
+# Playground hit reactions
+
+In `Assets/Scenes/CharacterSwitchPlayground.unity`, approach another party character and attack with the left mouse button. Press 0 to change the controlled character. `PartyMeleeHitTest` on the character selection object enables/disables this test feature.
+
+## Behaviour
+
+- Each authored unarmed contact marker emits one melee pulse with a 130-degree arc and 1.15 m reach plus target capsule radius. Sword contacts follow the existing slash effect contact path. Enemies target the controlled character; characters never hit themselves.
+- The victim's facing direction determines the animation: front/side chooses Rib Hit or Stomach Hit independently at random; rear chooses Hit On Back Of Head. The half-plane boundary counts as front.
+- A masked additive Animator layer plays relative to the source clip's first frame. Root, legs, foot IK, hand IK and fingers are excluded. Light hits add a flinch to the current action. Heavy hits cancel the action and briefly stagger; a poise break plays a full-body fall.
+- Front reactions last 0.32 / 0.36 seconds, and the back reaction lasts 0.30 seconds. Layer strength is 0.65 with a 35 ms onset and 140 ms release.
+- `CombatMotionPolishBuilder` derives the three clips from the original FBX files, explicitly removes root, legs, IK goals and finger curves, and keeps bounded upper-body muscle changes relative to frame 0. Torso deltas use 55% gain, other upper-body deltas 50%, with limits on individual muscles. This adds a brief recoil to the current bent, running or attacking pose instead of imposing the source animation's standing posture.
+- `IsDodging` rejects a hit, clears an existing reaction and suppresses particles, hitstop and camera shake at the common feedback entry point. A dodged sword contact is consumed for that slash, so its lingering effect cannot hit immediately after the dodge ends.
+
+## Enemy poise
+
+- `EnemyPoise` on each character applies only while that character is not player-controlled. Maximum 100; each accepted attack subtracts 25. Dodges reject the hit before poise changes.
+- Reactions use the value **after** damage: 50 or more retains the usual light flinch; below 50 randomly selects one of two Big Hit reactions, or one of the two Hit On Side reactions when running. Big Hit uses the new `Big Hit To Head (2)` reference and the retained alternate; both have stronger bounded upper-body recoil, with a further 25% increase to chest/arm gain and limits and a smaller head increase. The first 30% of source motion occupies the first 14% of playback, keeping a sharp impact while extending rebound and recovery to 0.82 / 0.86 seconds. Layer entry is 25 ms and release is 0.26 seconds. Running Side reactions retain 0.40 / 0.42 seconds. Actions and buffered attacks are cancelled, but the current base action is held for 0.5 seconds on Big Hit (running Side Hit retains 0.16 seconds) while upper-body recoil plays over it. `BaseActionSpeed` pauses only the base layer and `HitPoseHeld` blocks its automatic transitions; locomotion blend inputs stay unchanged during the hold. Afterwards, the pose blends back to movement/fall over 0.18 seconds while recoil fades. The AI waits for the reaction before starting a fresh attack. There is no entry transition to an upright idle pose.
+- Only a value strictly below 0 triggers `Shoulder Hit And Fall`, followed by `Getting Up`. With no regeneration between hits, hits 1–5 result in 75 / 50 / 25 / 0 / knockdown. Fall lasts 1.35 seconds, the ground pause is 0.22 seconds, and getting up lasts 1.6 seconds, with 0.10 / 0.24 / 0.18 second entry, get-up and locomotion blends.
+- Knockdown immediately restores poise to 100. Further hits during falling or getting up can show normal impact feedback but cannot reduce poise, restart the fall, or interrupt recovery. Attacks, movement intent and dodge requests are blocked until recovery completes. Planar fall/get-up root motion passes through the existing CharacterController.
+- Outside recovery, poise regenerates at 8 per second after 1.5 seconds without damage. These values and the ground pause are editable on `EnemyPoise`. Switching player ownership resets poise.
+- `Poise Bar` is a native world-space uGUI Canvas over each enemy's head, visible within 25 m. Gold means normal poise, red means below 50, and gray means falling/getting up. `EnemyPoiseBar` exposes the offset, range and colors. The controlled character's bar is hidden.
+- Seven additional user FBXs are in `Source`, including `Big Hit To Head (2)`. `EnemyPoiseBuilder.Build()` regenerates four additive recoil assets, configures the full-body fall/get-up imports and states, and installs the components and bars on the scene characters and their prefabs. Original files in Downloads are unchanged.
+
+## Validation records
+
+`Work/CrimsonGreatsword/poise-check.json` checks exact thresholds, running reactions, reset and immunity during recovery, regeneration, AI recovery, bars and dodge protection. `poise-pose-check.json` covers 36 matched poses across the three characters and four new reactions: hip positions and leg rotations remain unchanged. Runtime review images are in `Work/CrimsonGreatsword/PoiseReview`.
+
+The three original user FBX files are copied into `Source`; external originals remain unchanged. Import settings create valid humanoid avatars, bake root motion and use frame 0 as the additive reference pose. Controllers for Redhorn, BlueHalo and TealWitch have a `HitReaction` layer. Both currently instantiated prefab assets (BlueHalo, TealWitch) and all three scene characters have `CharacterHitReaction`; the Redhorn scene object is unpacked.
+
+`Work/CrimsonGreatsword/motion-pose-check.json` covers 27 matched samples: three characters × bent idle / running jump / kick × three reactions. Hip positions and leg rotations remain unchanged. Sampled head motion stays below 14 degrees and torso motion below 9 degrees, preserving every base state.
+
+`Work/HitReactions/play-report.json` checks real left-mouse attacks across all three characters, rear hits, out-of-range misses, misses behind the attacker, dodge immunity and acceptance after dodge. Each valid strike hits once, never itself, and the reaction weight returns to zero. A 32-hit random selection check exercises both front variants and never chooses the rear variant. The QA harness restores devices, selection, transforms, random state and runtime settings on completion / Play exit / reload. Original controller and prefab snapshots are in `Work/HitReactions/*.before.txt`.

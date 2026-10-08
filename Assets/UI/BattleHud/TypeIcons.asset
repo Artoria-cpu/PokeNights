@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2f8d1d836fb204aad80b44bfcd1bc7, type: 3}
+  m_Name: TypeIcons
+  m_EditorClassIdentifier: Assembly-CSharp::PokemonTypeIcons
+  sprites:
+  - {fileID: 21300000, guid: 953d6d4e66edc244a859287f153d213c, type: 3}
+  - {fileID: 21300000, guid: 3051d3ff54c1a7748a6698e4a35a6e8c, type: 3}
+  - {fileID: 21300000, guid: 68538747bc3952a4f8fcd30e8b41ec48, type: 3}
+  - {fileID: 21300000, guid: f2d8fa25416c14648b1053d8795c17fd, type: 3}
+  - {fileID: 21300000, guid: 15b574b620534904c8ce9b7dec494223, type: 3}
+  - {fileID: 21300000, guid: f51f1d1b149ac6045bf1cbe676ef6c31, type: 3}
+  - {fileID: 21300000, guid: 6dea0054fb913f7408489fade42da10d, type: 3}
+  - {fileID: 21300000, guid: 6a83cbb3f6f45174693c4a04a6257634, type: 3}
+  - {fileID: 21300000, guid: 47d734c673918904d83c50c83a1a495e, type: 3}
+  - {fileID: 21300000, guid: dfcc736ed64e2364d9dfa56f2e2931c0, type: 3}
+  - {fileID: 21300000, guid: 943c39cabe301474f991190f37fe619d, type: 3}
+  - {fileID: 21300000, guid: e7b3d11d9abf1f34b8b99f2fa4f55b8e, type: 3}
+  - {fileID: 21300000, guid: a30e4c2d4594c9e48aa5ceec35acd4b4, type: 3}
+  - {fileID: 21300000, guid: 2396ef0a9b090694ebfc97e8a9875272, type: 3}
+  - {fileID: 21300000, guid: 563f675d4ed778b47a5eb29c95437cea, type: 3}
+  - {fileID: 21300000, guid: 9bf0170b157d8504ba532826715da02a, type: 3}
+  - {fileID: 21300000, guid: b1ee743dbc91ac84993737d2f6a57ca4, type: 3}
+  - {fileID: 21300000, guid: 50edce59df341f3499c98f583d9c2ecc, type: 3}
